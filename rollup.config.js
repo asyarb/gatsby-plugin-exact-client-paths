@@ -31,10 +31,4 @@ export default [
     external: externalPkgs,
     plugins: [babel()],
   },
-  {
-    input: 'src/gatsby-browser.js',
-    output: { file: 'dist/gatsby-browser.js', format: 'cjs' },
-    external: externalPkgs,
-    plugins: [babel()],
-  },
 ]

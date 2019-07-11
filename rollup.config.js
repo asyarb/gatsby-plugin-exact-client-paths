@@ -12,19 +12,9 @@ const makeExternalPredicate = externalArr => {
 const externalPkgs = makeExternalPredicate([
   ...Object.keys(pkg.dependencies || {}),
   ...Object.keys(pkg.peerDependencies || {}),
-  'fs',
 ])
 
 export default [
-  {
-    input: 'src/index.js',
-    output: [
-      { file: 'dist/index.cjs.js', format: 'cjs' },
-      { file: 'dist/index.esm.js', format: 'es' },
-    ],
-    external: externalPkgs,
-    plugins: [babel()],
-  },
   {
     input: 'src/gatsby-node.js',
     output: { file: 'dist/gatsby-node.js', format: 'cjs' },

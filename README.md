@@ -6,6 +6,13 @@
   </a>
 </p>
 
+- [Install](#Install)
+- [Usage](#Usage)
+  - [How is this different from `gatsby-plugin-create-client-paths`](#How-is-this-different-from-gatsby-plugin-create-client-paths)
+- [Current Limitations](#Current-Limitations)
+- [Run tests](#Run-tests)
+- [📝 License](#%F0%9F%93%9D-License)
+
 > Gatsby plugin for client rendering exact page routes.
 
 ## Install
@@ -32,10 +39,25 @@ module.exports = {
 }
 ```
 
-## Limitations
+### How is this different from `gatsby-plugin-create-client-paths`
 
-- Client rendered components that use `useStaticQuery` will cause your app to
-  crash.
+This plugin attempts to address the inability to client render singular routes
+in Gatsby, most particularly with top level routes such as `/preview`.
+
+With `gatsby-plugin-create-client-paths`, you must create at least 1 route that
+is _still_ run through Gatsby's SSR pipeline that will handle the
+client-side-routing. This can be problematic when you want top level client
+routes like `https://hostname.com/preview` for client-side previews that are
+heavily reliant on browser specific accessors like `window`.
+
+This plugin establishes a `<Router>` behind the scenes of your index page that
+will render your SSR'd index page or a client rendered page if the path matches
+what you specify in the plugin options.
+
+## Current Limitations
+
+- Client rendered components that call the `useStaticQuery` hook will cause your
+  app to crash.
 
 ## Run tests
 

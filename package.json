@@ -35,11 +35,11 @@
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "babel-eslint": "^10.0.1",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-react-hooks": "^1.6.0",
     "babel-jest": "^24.8.0",
     "cross-env": "^5.2.0",
     "eslint": "^6.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
@@ -47,6 +47,7 @@
     "rollup": "^1.11.3",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-string": "^3.0.0",
+    "rollup-plugin-terser": "^5.1.1",
     "standard-version": "^6.0.1"
   },
   "peerDependencies": {

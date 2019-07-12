@@ -1,5 +1,8 @@
 import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
+import { terser } from 'rollup-plugin-terser'
+
+const isProd = process.env.NODE_ENV === 'production'
 
 const makeExternalPredicate = externalArr => {
   if (externalArr.length === 0) {
@@ -25,6 +28,6 @@ export default [
     input: 'src/gatsby-browser.js',
     output: { file: 'dist/gatsby-browser.js', format: 'cjs', sourcemap: true },
     external: externalPkgs,
-    plugins: [babel()],
+    plugins: [babel(), isProd && terser()],
   },
 ]

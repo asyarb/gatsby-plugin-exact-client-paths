@@ -7,26 +7,30 @@ describe('onCreatePage', () => {
   const actions = {
     createPage: jest.fn(),
   }
+  const reporter = {
+    panic: jest.fn().mockImplementation((_, error) => throw new Error(error)),
+    info: jest.fn(),
+  }
 
-  const gatsbyObj = { page, actions }
+  const gatsbyContext = { page, actions, reporter }
 
   afterEach(() => {
     actions.createPage.mockClear()
   })
 
   it('throws error when client paths is undefined', async () => {
-    await expect(onCreatePage(gatsbyObj, {})).rejects.toThrow(
+    await expect(onCreatePage(gatsbyContext, {})).rejects.toThrow(
       /array of exact paths./i,
     )
     await expect(
-      onCreatePage(gatsbyObj, { clientPaths: undefined }),
+      onCreatePage(gatsbyContext, { clientPaths: undefined }),
     ).rejects.toThrow(/array of exact paths./i)
   })
 
   it('throws error when client paths contains invalid types', async () => {
     const clientPaths = [1, 2, '/preview']
 
-    await expect(onCreatePage(gatsbyObj, { clientPaths })).rejects.toThrow(
+    await expect(onCreatePage(gatsbyContext, { clientPaths })).rejects.toThrow(
       /must be of type string/i,
     )
   })
@@ -34,7 +38,7 @@ describe('onCreatePage', () => {
   it('does not create a page when page is in clientPaths', () => {
     const clientPaths = ['/preview']
 
-    onCreatePage(gatsbyObj, { clientPaths })
+    onCreatePage(gatsbyContext, { clientPaths })
 
     expect(actions.createPage).toHaveBeenCalled()
   })
@@ -46,12 +50,12 @@ describe('onCreatePage', () => {
       path: '/test',
     }
 
-    const gatsbyObj = {
+    const gatsbyContext = {
       page,
       actions,
     }
 
-    onCreatePage(gatsbyObj, { clientPaths })
+    onCreatePage(gatsbyContext, { clientPaths })
 
     expect(actions.createPage).not.toHaveBeenCalled()
   })
@@ -63,12 +67,13 @@ describe('onCreatePage', () => {
       path: '/preview/testing/world',
     }
 
-    const gatsbyObj = {
+    const gatsbyContext = {
       page,
       actions,
+      reporter,
     }
 
-    onCreatePage(gatsbyObj, { clientPaths })
+    onCreatePage(gatsbyContext, { clientPaths })
 
     expect(actions.createPage).toHaveBeenCalled()
   })
@@ -80,12 +85,13 @@ describe('onCreatePage', () => {
       path: '/foo/bar',
     }
 
-    const gatsbyObj = {
+    const gatsbyContext = {
       page,
       actions,
+      reporter,
     }
 
-    onCreatePage(gatsbyObj, { clientPaths })
+    onCreatePage(gatsbyContext, { clientPaths })
 
     expect(actions.createPage).toHaveBeenCalled()
   })

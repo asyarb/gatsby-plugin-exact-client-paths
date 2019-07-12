@@ -2,25 +2,30 @@ const appendTrailingSlash = path => (path.match(/\/$/) ? path : `${path}/`)
 
 const validatePathEntry = path => {
   if (typeof path !== 'string')
-    throw Error(
-      `Plugin "gatsby-plugin-exact-client-paths" found invalid path: ${path}. Must be of type String.`,
-    )
+    throw Error(`found invalid path: ${path}. Must be of type String.`)
 }
 
 const validateClientPaths = clientPaths => {
   if (!Array.isArray(clientPaths))
     throw new Error(
-      `Plugin "gatsby-plugin-exact-client-paths" found invalid clientPaths: Please provide array of exact paths.`,
+      `found invalid clientPaths: Please provide array of exact paths.`,
     )
   clientPaths.forEach(validatePathEntry)
 }
 
-export const onCreatePage = async ({ page, actions }, { clientPaths }) => {
+export const onCreatePage = async (
+  { page, actions, reporter },
+  { clientPaths },
+) => {
   const { createPage } = actions
   const trailedSlashPath = appendTrailingSlash(page.path)
   let isMatchingPath = false
 
-  validateClientPaths(clientPaths)
+  try {
+    validateClientPaths(clientPaths)
+  } catch (error) {
+    reporter.panic(`Plugin "gatsby-plugin-exact-client-paths": ${error}`, error)
+  }
 
   if (page.matchPath || page.path.match(/dev-404-page/)) {
     return
@@ -35,7 +40,7 @@ export const onCreatePage = async ({ page, actions }, { clientPaths }) => {
   })
 
   if (isMatchingPath) {
-    console.log(`Client rendering path: ${trailedSlashPath}`)
+    reporter.info(`Client rendering path: ${trailedSlashPath}`)
     page.matchPath = '/'
 
     createPage(page)

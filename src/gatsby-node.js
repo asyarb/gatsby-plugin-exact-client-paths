@@ -24,7 +24,7 @@ export const onCreatePage = async (
   try {
     validateClientPaths(clientPaths)
   } catch (error) {
-    reporter.panic(`Plugin "gatsby-plugin-exact-client-paths": ${error}`, error)
+    reporter.panic(`gatsby-plugin-exact-client-paths - ${error}`, error)
   }
 
   if (page.matchPath || page.path.match(/dev-404-page/)) {
@@ -40,7 +40,9 @@ export const onCreatePage = async (
   })
 
   if (isMatchingPath) {
-    reporter.info(`Client rendering path: ${trailedSlashPath}`)
+    reporter.info(
+      `gatsby-plugin-exact-client-paths - Client rendering path: ${trailedSlashPath}`,
+    )
     page.matchPath = '/'
 
     createPage(page)

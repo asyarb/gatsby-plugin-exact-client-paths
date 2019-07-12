@@ -2,8 +2,7 @@
   "name": "gatsby-plugin-exact-client-paths",
   "version": "0.1.0",
   "description": "Gatsby plugin for client rendering exact page routes.",
-  "main": "index.cjs.js",
-  "module": "index.esm.js",
+  "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
     "format": "prettier --write 'src/**/*.js' 'rollup.config.js' 'README.md'",

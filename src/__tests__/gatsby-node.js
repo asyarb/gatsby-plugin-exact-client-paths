@@ -14,17 +14,19 @@ describe('onCreatePage', () => {
     actions.createPage.mockClear()
   })
 
-  it('throws error when client paths is undefined', () => {
-    expect(() => onCreatePage(gatsbyObj, {})).toThrow(/array of exact paths./i)
-    expect(() => onCreatePage(gatsbyObj, { clientPaths: undefined })).toThrow(
+  it('throws error when client paths is undefined', async () => {
+    await expect(onCreatePage(gatsbyObj, {})).rejects.toThrow(
       /array of exact paths./i,
     )
+    await expect(
+      onCreatePage(gatsbyObj, { clientPaths: undefined }),
+    ).rejects.toThrow(/array of exact paths./i)
   })
 
-  it('throws error when client paths contains invalid types', () => {
+  it('throws error when client paths contains invalid types', async () => {
     const clientPaths = [1, 2, '/preview']
 
-    expect(() => onCreatePage(gatsbyObj, { clientPaths })).toThrow(
+    await expect(onCreatePage(gatsbyObj, { clientPaths })).rejects.toThrow(
       /must be of type string/i,
     )
   })
@@ -34,7 +36,7 @@ describe('onCreatePage', () => {
 
     onCreatePage(gatsbyObj, { clientPaths })
 
-    expect(actions.createPage).not.toHaveBeenCalled()
+    expect(actions.createPage).toHaveBeenCalled()
   })
 
   it('creates a page when page is not in clientPaths', () => {
@@ -51,10 +53,7 @@ describe('onCreatePage', () => {
 
     onCreatePage(gatsbyObj, { clientPaths })
 
-    expect(actions.createPage).toHaveBeenCalledTimes(1)
-    expect(actions.createPage).toHaveBeenCalledWith({
-      path: '/test',
-    })
+    expect(actions.createPage).not.toHaveBeenCalled()
   })
 
   it('does not create a page when deep paths match', () => {
@@ -71,7 +70,7 @@ describe('onCreatePage', () => {
 
     onCreatePage(gatsbyObj, { clientPaths })
 
-    expect(actions.createPage).not.toHaveBeenCalled()
+    expect(actions.createPage).toHaveBeenCalled()
   })
 
   it('handles multiple specified client paths', () => {
@@ -88,6 +87,6 @@ describe('onCreatePage', () => {
 
     onCreatePage(gatsbyObj, { clientPaths })
 
-    expect(actions.createPage).not.toHaveBeenCalled()
+    expect(actions.createPage).toHaveBeenCalled()
   })
 })

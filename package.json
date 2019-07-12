@@ -31,9 +31,12 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "babel-eslint": "^10.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "babel-jest": "^24.8.0",
     "cross-env": "^5.2.0",
     "eslint": "^6.0.1",
@@ -47,6 +50,8 @@
     "standard-version": "^6.0.1"
   },
   "peerDependencies": {
-    "gatsby": ">=2.3.0"
+    "@reach/router": "1.2.1",
+    "gatsby": ">=2.3.0",
+    "react": ">=16.8.0"
   }
 }

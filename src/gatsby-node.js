@@ -15,14 +15,14 @@ const validateClientPaths = clientPaths => {
   clientPaths.forEach(validatePathEntry)
 }
 
-export const onCreatePage = ({ page, actions }, { clientPaths }) => {
+export const onCreatePage = async ({ page, actions }, { clientPaths }) => {
   const { createPage } = actions
   const trailedSlashPath = appendTrailingSlash(page.path)
   let isMatchingPath = false
 
   validateClientPaths(clientPaths)
 
-  if (page.path.match(/dev-404-page/)) {
+  if (page.matchPath || page.path.match(/dev-404-page/)) {
     return
   }
 
@@ -35,8 +35,9 @@ export const onCreatePage = ({ page, actions }, { clientPaths }) => {
   })
 
   if (isMatchingPath) {
-    return
-  }
+    console.log(`Client rendering path: ${trailedSlashPath}`)
+    page.matchPath = '/'
 
-  createPage(page)
+    createPage(page)
+  }
 }

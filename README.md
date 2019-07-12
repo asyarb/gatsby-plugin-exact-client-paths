@@ -44,14 +44,13 @@ This plugin attempts to address the inability to client-side render singular
 routes in Gatsby, most particularly with top level routes such as `/preview`.
 
 With `gatsby-plugin-create-client-paths`, you must create at least 1 route that
-is _still_ run through Gatsby's SSR pipeline that will handle the
-client-side-routing. This can be problematic when you want top level client
-routes like `https://hostname.com/preview` for client-side previews that are
-heavily reliant on browser specific accessors like `window`.
+is still processed via Gatsby's SSR pipeline that handles the client-side
+routing. This can be problematic top level client-side routes like
+`https://hostname.com/preview` are needed.
 
 This plugin establishes a `<Router>` behind the scenes of your index page that
-will render your SSR'd index page or a client rendered page if the current path
-matches what you specify in the `clientPaths` plugin options.
+will normally display your SSR'd content or a client rendered page if the
+current path matches a path specified in the `clientPaths` plugin options.
 
 ## Current Limitations
 

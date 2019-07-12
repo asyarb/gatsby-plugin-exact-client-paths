@@ -8,7 +8,7 @@
 
 - [Install](#Install)
 - [Usage](#Usage)
-  - [How is this different from `gatsby-plugin-create-client-paths`](#How-is-this-different-from-gatsby-plugin-create-client-paths)
+  - [How is this different from `gatsby-plugin-create-client-paths`?](#How-is-this-different-from-gatsby-plugin-create-client-paths)
 - [Current Limitations](#Current-Limitations)
 - [Run tests](#Run-tests)
 - [📝 License](#%F0%9F%93%9D-License)
@@ -31,7 +31,6 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-exact-client-paths',
       options: {
-        root: __dirname,
         clientPaths: ['/preview'],
       },
     },
@@ -39,10 +38,10 @@ module.exports = {
 }
 ```
 
-### How is this different from `gatsby-plugin-create-client-paths`
+### How is this different from `gatsby-plugin-create-client-paths`?
 
-This plugin attempts to address the inability to client render singular routes
-in Gatsby, most particularly with top level routes such as `/preview`.
+This plugin attempts to address the inability to client-side render singular
+routes in Gatsby, most particularly with top level routes such as `/preview`.
 
 With `gatsby-plugin-create-client-paths`, you must create at least 1 route that
 is _still_ run through Gatsby's SSR pipeline that will handle the
@@ -51,8 +50,8 @@ routes like `https://hostname.com/preview` for client-side previews that are
 heavily reliant on browser specific accessors like `window`.
 
 This plugin establishes a `<Router>` behind the scenes of your index page that
-will render your SSR'd index page or a client rendered page if the path matches
-what you specify in the plugin options.
+will render your SSR'd index page or a client rendered page if the current path
+matches what you specify in the `clientPaths` plugin options.
 
 ## Current Limitations
 

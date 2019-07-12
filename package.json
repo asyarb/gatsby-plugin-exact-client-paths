@@ -12,10 +12,10 @@
     "release": "standard-version",
     "test": "jest"
   },
-  "homepage": "https://github.com/asyarb/gatsby-plugin-single-client-paths",
+  "homepage": "https://github.com/asyarb/gatsby-plugin-exact-client-paths",
   "repository": {
     "type": "git",
-    "url": "https://github.com/asyarb/gatsby-plugin-single-client-paths.git"
+    "url": "https://github.com/asyarb/gatsby-plugin-exact-client-paths.git"
   },
   "keywords": [
     "gatsby",
@@ -23,6 +23,7 @@
     "client",
     "rendered",
     "path",
+    "exact",
     "single"
   ],
   "author": "Anthony Yarbrough <anthony.yarbrough@walltowall.com>",

@@ -54,8 +54,8 @@ current path matches a path specified in the `clientPaths` plugin options.
 
 ## Current Limitations
 
-- Client rendered components that call the `useStaticQuery` hook will cause your
-  app to crash.
+- Client rendered paths & component trees that call Gatsby's `useStaticQuery`
+  hook will crash.
 
 ## Run tests
 

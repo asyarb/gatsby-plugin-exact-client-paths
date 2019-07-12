@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-exact-client-paths',
       options: {
-        clientPaths: ['/preview'],
+        clientPaths: ['/preview', '/clientOnly'],
       },
     },
   ],

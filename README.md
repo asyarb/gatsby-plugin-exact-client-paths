@@ -45,11 +45,13 @@ routes in Gatsby, most particularly with top level routes such as `/preview`.
 
 With `gatsby-plugin-create-client-paths`, you must create at least 1 route that
 is still processed via Gatsby's SSR pipeline that handles the client-side
-routing. This can be problematic top level client-side routes like
-`https://hostname.com/preview` are needed.
+routing for nested paths. This can be problematic when top level client-side
+routes like `https://hostname.com/preview` are needed, and we don't want to
+imperatively define a `<Router>` component directly in our homepage index
+component.
 
 This plugin establishes a `<Router>` behind the scenes of your index page that
-will normally display your SSR'd content or a client rendered page if the
+will normally display your SSR'd content _or_ a client rendered page if the
 current path matches a path specified in the `clientPaths` plugin options.
 
 ## Current Limitations

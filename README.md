@@ -14,6 +14,29 @@
 yarn add gatsby-plugin-exact-client-paths
 ```
 
+## Usage
+
+```js
+// gatsby-config.js
+
+module.exports = {
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-exact-client-paths',
+      options: {
+        root: __dirname,
+        clientPaths: ['/preview'],
+      },
+    },
+  ],
+}
+```
+
+## Limitations
+
+- Client rendered components that use `useStaticQuery` will cause your app to
+  crash.
+
 ## Run tests
 
 ```sh

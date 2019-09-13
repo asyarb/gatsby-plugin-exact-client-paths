@@ -9,7 +9,7 @@ export const ClientPathRenderer = ({ element, clientPaths = [] }) => {
       const dynamicComponents = clientPaths.map(async path => {
         const { default: Comp } = await import(
           /* webpackMode: "eager" */
-          `src/pages${path}.js`
+          `src/pages${path}`
         )
 
         return Comp

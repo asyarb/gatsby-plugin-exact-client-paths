@@ -1,17 +1,11 @@
 <h1 align="center">gatsby-plugin-exact-client-paths</h1>
-<p>
-  <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/asyarb/gatsby-plugin-exact-client-paths/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
-  </a>
-</p>
 
-- [Install](#Install)
-- [Usage](#Usage)
-  - [How is this different from `gatsby-plugin-create-client-paths`?](#How-is-this-different-from-gatsby-plugin-create-client-paths)
-- [Current Limitations](#Current-Limitations)
-- [Run tests](#Run-tests)
-- [📝 License](#%F0%9F%93%9D-License)
+- [Install](#install)
+- [Usage](#usage)
+  - [How is this different from `gatsby-plugin-create-client-paths`?](#how-is-this-different-from-gatsby-plugin-create-client-paths)
+- [Current Limitations](#current-limitations)
+- [Run tests](#run-tests)
+- [📝 License](#%f0%9f%93%9d-license)
 
 > Gatsby plugin for client rendering exact page routes.
 
